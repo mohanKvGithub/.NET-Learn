@@ -1,4 +1,6 @@
-﻿namespace Mapster_lib_.Models
+﻿using Mapster_lib_.DTO;
+
+namespace Mapster_lib_.Models
 {
     public class Student
     {
@@ -8,6 +10,6 @@
         public int ClassId { get; set; }
         public int TeacherId { get; set; }
         public Class Class { get; set; }
-        public Teachers Teacher { get; set; }
+        public List<TeachersDto> Teachers { get; set; }
     }
 }

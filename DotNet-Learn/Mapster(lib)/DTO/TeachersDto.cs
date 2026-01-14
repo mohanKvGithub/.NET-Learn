@@ -1,6 +1,6 @@
 ﻿namespace Mapster_lib_.DTO
 {
-    public class Teachers
+    public class TeachersDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
