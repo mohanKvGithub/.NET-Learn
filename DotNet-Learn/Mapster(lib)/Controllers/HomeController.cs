@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Security.Cryptography.Xml;
 using Mapster;
 using Mapster_lib_.DTO;
 using Mapster_lib_.Models;
@@ -19,9 +20,9 @@ namespace Mapster_lib_.Controllers
         {
             var student=new StudentDto
             {
-                Id = 1,
-                Name = "John Doe",
-                Age = 20,
+                StudentId = 1,
+                StudentName = "John Doe",
+                StudentAge = 20,
                 ClassId = 101,
                 TeacherId = 201,
                 Class = new ClassDto
@@ -35,7 +36,11 @@ namespace Mapster_lib_.Controllers
                     new TeachersDto { Id = 202, Name = "Ms. Johnson", Subject = "Science" }
                 }
             };
-            var studentObj=student.Adapt<Student>();
+            var studentObject = new Student();
+            studentObject = student.Adapt<Student>();
+            studentObject.Id = 10;
+            studentObject.Name = "mohan";
+            studentObject.Adapt(student);
             return View();
         }
 
