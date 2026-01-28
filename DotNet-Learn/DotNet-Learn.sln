@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36310.24
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mapster(lib)", "Mapster(lib)\Mapster(lib).csproj", "{936AFE4B-4D77-45BC-A0EC-DF01B35B63CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authorization and Authentication", "Authorization and Authentication\Authorization and Authentication.csproj", "{0C5A333C-7569-4064-A565-96B6F5F12241}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{936AFE4B-4D77-45BC-A0EC-DF01B35B63CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{936AFE4B-4D77-45BC-A0EC-DF01B35B63CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{936AFE4B-4D77-45BC-A0EC-DF01B35B63CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C5A333C-7569-4064-A565-96B6F5F12241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5A333C-7569-4064-A565-96B6F5F12241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5A333C-7569-4064-A565-96B6F5F12241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5A333C-7569-4064-A565-96B6F5F12241}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
