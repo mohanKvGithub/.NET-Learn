@@ -1,5 +1,6 @@
 using Authorization_and_Authentication.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,27 +8,26 @@ using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using System.Security.Claims;
 
 namespace Authorization_and_Authentication.Controllers
 {
-    [Authorize(AuthenticationSchemes=JwtBearerDefaults.AuthenticationScheme)]
-    public class HomeController : Controller
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    public class HomeController(IHttpContextAccessor contextAccessor, ILogger<HomeController> logger) : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        private readonly ILogger<HomeController> _logger=logger;
 
         [AllowAnonymous]
         public IActionResult Index()
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("453kl4j534lk45434k5lj3443k5lj34k453kl4j534lk45434k5lj3443k5lj34k"));
-            var credentials=new SigningCredentials(securityKey,SecurityAlgorithms.HmacSha512);
-            var securityToken = new JwtSecurityToken(signingCredentials:credentials);
-            var token = new JwtSecurityTokenHandler().WriteToken(securityToken);
-
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Name, "TestUser"),
+                new Claim(ClaimTypes.Role, "Admin"),
+                new Claim("CustomClaimType", "CustomClaimValue")
+            };
+            var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
             return View();
         }
 
@@ -44,6 +44,18 @@ namespace Authorization_and_Authentication.Controllers
         public IActionResult GenerateToken()
         {
 
+            return View();
+        }
+        [AllowAnonymous]
+        public IActionResult NotAuthentic()
+        {
+
+            return View();
+        }
+        public IActionResult Claims()
+        {
+            var claims=contextAccessor.HttpContext.User.Claims.ToList();
+            ViewBag.Claims=claims;
             return View();
         }
     }
