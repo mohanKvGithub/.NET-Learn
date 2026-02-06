@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mapster(lib)", "Mapster(lib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authorization and Authentication", "Authorization and Authentication\Authorization and Authentication.csproj", "{0C5A333C-7569-4064-A565-96B6F5F12241}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF Core", "EF Core\EF Core.csproj", "{61D27D41-9CEA-4BB5-A90A-0BD1EDDABDDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0C5A333C-7569-4064-A565-96B6F5F12241}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C5A333C-7569-4064-A565-96B6F5F12241}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C5A333C-7569-4064-A565-96B6F5F12241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61D27D41-9CEA-4BB5-A90A-0BD1EDDABDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D27D41-9CEA-4BB5-A90A-0BD1EDDABDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D27D41-9CEA-4BB5-A90A-0BD1EDDABDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D27D41-9CEA-4BB5-A90A-0BD1EDDABDDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
