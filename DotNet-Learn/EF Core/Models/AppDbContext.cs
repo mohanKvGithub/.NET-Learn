@@ -13,4 +13,14 @@ public class AppDbContext:DbContext
     public virtual DbSet<Orders> Orders { get; set; }
     public virtual DbSet<Payments> Payments { get; set; }
     public virtual DbSet<Products> Products { get; set; }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Customers>().ToTable("Customers");
+        modelBuilder.Entity<OrderItems>().ToTable("OrderItems");
+        modelBuilder.Entity<Orders>().ToTable("Orders");
+        modelBuilder.Entity<Payments>().ToTable("Payments");
+        modelBuilder.Entity<Products>().ToTable("Products");
+    }
 }

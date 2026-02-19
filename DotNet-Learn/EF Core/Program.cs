@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContextPool<AppDbContext>(o => o.UseSqlServer("Data Source=DESKTOP-KKLQNQB\\SQLEXPRESS;Initial Catalog==.NetLearn;User id=sa;Password=SqlAdm!n;Trusted_Connection=True;MultipleActiveResultSets=true;"));
+builder.Services.AddDbContextPool<AppDbContext>(o => o.UseSqlServer("Data Source=DESKTOP-KKLQNQB\\SQLEXPRESS;Initial Catalog=.NetLearn;User id=sa;Password=SqlAdm!n;Trusted_Connection=True;MultipleActiveResultSets=true;"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
