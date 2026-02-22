@@ -23,7 +23,8 @@ CREATE TABLE Customers (
     LastName NVARCHAR(100) NOT NULL,
     Email NVARCHAR(150) UNIQUE NOT NULL,
     Phone NVARCHAR(20),
-    CreatedDate DATETIME2 DEFAULT GETDATE()
+    CreatedDate DATETIME2 DEFAULT GETDATE(),
+	IsDeleted Bit not null DEFAULT 0,
 );
 
 -- Products
@@ -33,7 +34,8 @@ CREATE TABLE Products (
     Description NVARCHAR(500),
     Price DECIMAL(18,2) NOT NULL CHECK (Price > 0),
     StockQuantity INT NOT NULL CHECK (StockQuantity >= 0),
-    IsActive BIT DEFAULT 1
+    IsActive BIT DEFAULT 1,
+	IsDeleted Bit not null DEFAULT 0,
 );
 
 -- Orders
@@ -42,6 +44,7 @@ CREATE TABLE Orders (
     CustomerId INT NOT NULL,
     OrderDate DATETIME2 DEFAULT GETDATE(),
     OrderStatus NVARCHAR(50) DEFAULT 'Pending',
+	IsDeleted Bit not null DEFAULT 0,
 
     CONSTRAINT FK_Orders_Customers
         FOREIGN KEY (CustomerId)
@@ -56,7 +59,7 @@ CREATE TABLE OrderItems (
     ProductId INT NOT NULL,
     Quantity INT NOT NULL CHECK (Quantity > 0),
     UnitPrice DECIMAL(18,2) NOT NULL CHECK (UnitPrice > 0),
-
+	IsDeleted Bit not null DEFAULT 0,
     CONSTRAINT FK_OrderItems_Orders
         FOREIGN KEY (OrderId)
         REFERENCES Orders(OrderId)
@@ -76,7 +79,7 @@ CREATE TABLE Payments (
     PaymentDate DATETIME2 DEFAULT GETDATE(),
     Amount DECIMAL(18,2) NOT NULL CHECK (Amount > 0),
     PaymentMethod NVARCHAR(50) NOT NULL,
-
+	IsDeleted Bit not null DEFAULT 0,
     CONSTRAINT FK_Payments_Orders
         FOREIGN KEY (OrderId)
         REFERENCES Orders(OrderId)

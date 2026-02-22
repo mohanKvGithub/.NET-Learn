@@ -3,6 +3,12 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Products</h1>
+    <ol style="text-align:center;">
+    @foreach (var item in ViewBag.Products)
+    {
+        <li style="text-align:start;">@item.ProductName</li>
+    }
+    </ol>
+        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

@@ -7,8 +7,8 @@ namespace EF_Core.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly AppDbContext _context; 
-        public HomeController(ILogger<HomeController> logger, AppDbContext context)
+        private readonly NetLearnContext _context; 
+        public HomeController(ILogger<HomeController> logger, NetLearnContext context)
         {
             _logger = logger;
             _context = context;
@@ -16,7 +16,7 @@ namespace EF_Core.Controllers
 
         public IActionResult Index()
         {
-            var products = _context.Products.ToList();
+            ViewBag.Products = _context.Products.ToList();
             return View();
         }
 
