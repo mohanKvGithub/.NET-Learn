@@ -38,6 +38,7 @@ public partial class NetLearnContext : DbContext
             entity.Property(e => e.FirstName).HasMaxLength(100);
             entity.Property(e => e.LastName).HasMaxLength(100);
             entity.Property(e => e.Phone).HasMaxLength(20);
+            entity.HasQueryFilter(e => !e.IsDeleted);
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -54,6 +55,7 @@ public partial class NetLearnContext : DbContext
             entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.CustomerId)
                 .HasConstraintName("FK_Orders_Customers");
+            entity.HasQueryFilter(e => !e.IsDeleted);
         });
 
         modelBuilder.Entity<OrderItem>(entity =>
@@ -76,6 +78,7 @@ public partial class NetLearnContext : DbContext
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_OrderItems_Products");
+            entity.HasQueryFilter(e => !e.IsDeleted);
         });
 
         modelBuilder.Entity<Payment>(entity =>
@@ -91,6 +94,7 @@ public partial class NetLearnContext : DbContext
             entity.HasOne(d => d.Order).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.OrderId)
                 .HasConstraintName("FK_Payments_Orders");
+            entity.HasQueryFilter(e => !e.IsDeleted);
         });
 
         modelBuilder.Entity<Product>(entity =>
@@ -101,6 +105,7 @@ public partial class NetLearnContext : DbContext
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.ProductName).HasMaxLength(200);
+            entity.HasQueryFilter(e => !e.IsDeleted);
         });
 
         OnModelCreatingPartial(modelBuilder);
