@@ -16,7 +16,7 @@ namespace EF_Core.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Products = _context.Products.ToList();
+            ViewBag.Products = _context.Products.Where(x=>x.IsDeleted==true).ToList();
             return View();
         }
 

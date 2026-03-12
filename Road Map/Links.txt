@@ -1,0 +1,5 @@
+https://github.com/Elfocrash/.NET-Backend-Developer-Roadmap
+
+https://www.tutorialspoint.com/csharp/index.htm
+
+https://dotnettutorials.net/course/csharp-dot-net-tutorials/
