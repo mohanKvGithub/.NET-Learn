@@ -1,0 +1,1 @@
+Select FirstName, LastName, Count(*) as c from Customers group by FirstName, LastName
