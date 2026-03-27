@@ -1,6 +1,6 @@
 ﻿1) dotnet new <template> -n <ProjectName> ----> create new project with template and name
 2) dotnet new list ---> list all templates available
-3) dotnet sln <SolutionName>.sln add <PathToProject>.csproj ---> add project to solution
+3) dotnet sln add <PathToProject>.csproj ---> add project to solution
 4) dotnet --version ---> check dotnet version
 5) dotnet --list-sdks ---> list all installed SDKs
 6) dotnet new sln -n MySolution ---> create new solution with name MySolution
