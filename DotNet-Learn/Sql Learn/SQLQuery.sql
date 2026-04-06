@@ -9,6 +9,33 @@ select * from Customers; --all columns
 go
 select FirstName as Fname, LastName as Lname from Customers; -- particular column with specified header
 -- ======================================================================================================================================================
+-- DISTINCT
+-- ======================================================================================================================================================
+go
+select distinct FirstName,LastName,Phone from Customers;
+go
+select distinct FirstName from Customers;
+go
+select count(distinct LastName) from Customers;
+go
+select sum(distinct num1) from Numbers
+go
+select avg(distinct num2) from Numbers
+go
+select max(distinct num1) from Numbers
+go
+select min(distinct num1) from Numbers
+go
+-- ======================================================================================================================================================
+-- SELECT TOP
+-- ======================================================================================================================================================
+select top 3 * from Customers
+go
+select top 50 percent * from Customers
+go
+select top 2 LastName from Customers group by LastName
+go
+-- ======================================================================================================================================================
 -- ORDER BY
 -- ======================================================================================================================================================
 go
