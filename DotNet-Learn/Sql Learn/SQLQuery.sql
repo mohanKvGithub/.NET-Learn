@@ -141,3 +141,21 @@ go
 select * from Products p where 'Completed'=all(select OrderStatus from Orders o left join OrderItems oi on oi.OrderId=o.OrderId where oi.ProductId=p.ProductId )
 go
 select * from Products p where p.StockQuantity > all(select sum(Quantity) from OrderItems o where o.ProductId=p.ProductId)
+go
+-- ======================================================================================================================================================
+-- IN 
+-- ======================================================================================================================================================
+select * from Products where ProductId in(select ProductId from Orders) and Category in('Electronics','Appliances','Furniture');
+go
+select * from Products where ProductId not in(select ProductId from Orders) and Category in('Electronics','Appliances','Furniture');
+go
+-- ======================================================================================================================================================
+-- BETWEEN  
+-- ======================================================================================================================================================
+select * from Products where Price between 100 and 1000
+go 
+select * from Products where Price not between 1100 and 3000
+go 
+select * from Orders where OrderDate between '2026-02-21' and '2026-02-25'
+go
+select * from Customers where FirstName between 'ab' and 'gan' order by FirstName
