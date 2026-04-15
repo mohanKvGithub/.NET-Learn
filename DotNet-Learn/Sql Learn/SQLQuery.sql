@@ -66,46 +66,40 @@ group by oi.OrderId,o.CustomerId
 -- Aggregate Functions : are performed on list of rows (grouped data or table)
 -- ======================================================================================================================================================
 
-	--	1) MIN() works with numeric, string, and date data types. returns the smallest value of the selected column.
-go
-select min(UnitPrice) as minPrice from OrderItems group by Quantity
-go
-select min(Price) as minPrice from Products
+--	1) MIN() works with numeric, string, and date data types. returns the smallest value of the selected column.
+	go
+	select min(UnitPrice) as minPrice from OrderItems group by Quantity
+	go
+	select min(Price) as minPrice from Products
+	go
 
--- ======================================================================================================================================================
-	--	2) MAX() works with numeric, string, and date data types. returns the largest value of the selected column.
-go
-select max(UnitPrice) as maxPrice from OrderItems group by Quantity
-go
-select max(Price) as maxPrice from Products
+--	2) MAX() works with numeric, string, and date data types. returns the largest value of the selected column.		
+	select max(UnitPrice) as maxPrice from OrderItems group by Quantity
+	go
+	select max(Price) as maxPrice from Products
+	go
 
--- ======================================================================================================================================================
-	--	3) COUNT()
-go 
-select count(*) from Products -- Counts Total no rows including null
-go
-select count([Description]) from Products -- Counts Total non null vlaues in column
-go 
-select count(distinct [Description]) from Products -- Counts unique non null values in column
-go
-select IsDeleted as Deleted, count(*) as Count from Products group by IsDeleted; 
-go
+--	3) COUNT()
+	select count(*) from Products -- Counts Total no rows including null
+	go
+	select count([Description]) from Products -- Counts Total non null vlaues in column
+	go 
+	select count(distinct [Description]) from Products -- Counts unique non null values in column
+	go
+	select IsDeleted as Deleted, count(*) as Count from Products group by IsDeleted; 
+	go
 
--- ======================================================================================================================================================
-	--	4) SUM() used to calculate the total sum of values within a specified numeric column. Ignores null value
+--	4) SUM() used to calculate the total sum of values within a specified numeric column. Ignores null value
+	select sum(StockQuantity) from Products;
+	go
+	select sum(StockQuantity) from Products group by IsDeleted
+	go
 
-select sum(StockQuantity) from Products;
-go
-select sum(StockQuantity) from Products group by IsDeleted
-go
-
--- ======================================================================================================================================================
-	--	5) AVG() : SUM(column)/COUNT(column) = equal share for each row. Ignores null value
-
-select avg(Price) from Products 
-go
-select avg(Price) from Products group by Category
-go
+--	5) AVG() : SUM(column)/COUNT(column) = equal share for each row. Ignores null value
+	select avg(Price) from Products 
+	go
+	select avg(Price) from Products group by Category
+	go
 
 -- ======================================================================================================================================================
 -- HAVING
@@ -159,3 +153,32 @@ go
 select * from Orders where OrderDate between '2026-02-21' and '2026-02-25'
 go
 select * from Customers where FirstName between 'ab' and 'gan' order by FirstName
+go
+-- ======================================================================================================================================================
+-- LIKE (Wildcards)
+-- ======================================================================================================================================================
+-- A wildcard acts as a placeholder for unknown characters when you only know part of a word. works for numbers as string as well
+
+--	1) % : Represents zero or more characters
+	select * from Customers where FirstName Like 'M%n'
+	go
+
+--	2) _ : Represents a single character
+	select * from Customers where FirstName Like '_ohan'
+	go
+
+--	3) [] : Represents any single character within the brackets *
+	select * from Customers where FirstName Like 'm[mohan][mohan][mohan]n'
+	go
+
+--	4) [^] : Represents any character not in the brackets *
+	select * from Customers where FirstName Like '[^masd]oh%n'
+	go
+	select * from Customers where FirstName Like '[^a-j]oh%n'
+	go
+
+--	5) - : Represents any character not in the brackets *
+	select * from Customers where FirstName Like '[a-j]oh%n'
+	go
+	select * from Customers where FirstName Like '[1-9]oh%n'
+	go
