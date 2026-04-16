@@ -182,3 +182,8 @@ go
 	go
 	select * from Customers where FirstName Like '[1-9]oh%n'
 	go
+
+-- 6) ESCAPE : if columns contains actual wildcards
+	select * from Customers where FirstName like '\%' escape '\' -- next to \ char is considered as normal char 
+	go
+	select * from Customers where FirstName like '+[+]' escape '+' -- next to + char is considered as normal char 
