@@ -187,3 +187,43 @@ go
 	select * from Customers where FirstName like '\%' escape '\' -- next to \ char is considered as normal char 
 	go
 	select * from Customers where FirstName like '+[+]' escape '+' -- next to + char is considered as normal char 
+	go
+
+-- ======================================================================================================================================================
+-- COALESCE()
+-- ======================================================================================================================================================
+
+--function returns the first non-NULL value in a list of values.
+select coalesce(FirstName,LastName,Email, null) Email, coalesce(IsDeleted,0) IsDeleted from Customers
+go
+
+-- ======================================================================================================================================================
+-- ISNULL()
+-- ======================================================================================================================================================
+
+--replaces NULL with a specified value.
+select isnull(IsDeleted,0), isnull(Email,'No mail') from Customers
+go
+
+-- ======================================================================================================================================================
+-- CASE
+-- ======================================================================================================================================================
+select case when StockQuantity=10 Then Price -100
+			when StockQuantity=20 Then Price - 200
+			else Price -Price End as Price from Products;
+go
+select case when FirstName like 'M%' then 'Name starting with M'
+			when FirstName like 'N%' then 'Name starting with N'
+			else 'Name starting with '+SUBSTRING(FirstName,1,1)+' is not required' 
+			end from Customers 
+go
+
+-- ======================================================================================================================================================
+-- IIF()
+-- ======================================================================================================================================================
+select ProductName, IIF(Price<=5000,'Low Price','High Price') from Products
+go
+select IIF(count(*)>=2,min(c.FirstName)+' is a regular customer', min(c.FirstName)+' is a new customer') from Orders o
+left join Customers c on o.CustomerId=c.CustomerId
+group by o.CustomerId
+
