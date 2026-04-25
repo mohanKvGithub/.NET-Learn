@@ -269,5 +269,8 @@ go
 -- ======================================================================================================================================================
 -- TRIM(), LTRIM(), RTRIM()
 -- ======================================================================================================================================================
-
-
+select TRIM('            mohan      ') , LTRIM('                Mohan                 '), RTRIM('                Mohan              ') --defualt space
+go
+SELECT TRIM('#! S' FROM '    #SQL TuStorial!    ') AS TrimmedString; --Removes any of the specified characters from the beginning and end of the string
+go
+select LTRIM('                Mohan                 ','%#Mn '), RTRIM('                Mohan              ','%#Mn ')
